@@ -20,7 +20,7 @@ API Shield's JWT validation cryptographically verifies incoming JWTs before they
 
 JWT validation has two parts: a token configuration that tells Cloudflare how to find and verify JWTs, and a rule that acts on the validation results.
 
-After you create a token configuration, Cloudflare checks every request in the zone for a JWT at the configured locations. When Cloudflare finds a JWT, it validates the token and makes the verified claims available in `http.request.jwt.claims` fields. You do not need a rule or an operation in [Endpoint Management](/api-shield/management-and-monitoring/) for validation. Rules determine how Cloudflare acts on the results.
+After you create a token configuration, Cloudflare checks every request in the zone for a JWT at the configured locations. When Cloudflare finds a JWT, it validates the token and makes the verified claims available in `http.request.jwt.claims` fields. For available fields and standard claims, refer to the [JWT validation fields](/ruleset-engine/rules-language/fields/reference/?field-category=JWT+validation) reference. You do not need a rule or an operation in [Endpoint Management](/api-shield/management-and-monitoring/) for validation. Rules determine how Cloudflare acts on the results.
 
 ### Add a token validation configuration
 
@@ -48,7 +48,7 @@ Choose one of the following rule types:
 
 Cloudflare validates JWTs the same way regardless of which rule type you choose.
 
-To reference a claim in a rule expression, use [`lookup_json_string()`](/ruleset-engine/rules-language/functions/#lookup_json_string) with your token configuration ID and the claim name:
+For example, to reference a simple string claim in a rule expression, use [`lookup_json_string()`](/ruleset-engine/rules-language/functions/#lookup_json_string) with your token configuration ID and the claim name:
 
 ```txt
 lookup_json_string(http.request.jwt.claims["<TOKEN_CONFIGURATION_ID>"][0], "claim_name")
@@ -78,7 +78,7 @@ JWT validation rules use operations from Endpoint Management to control where Cl
 
 :::note
 
-JWT validation rules automatically apply to new endpoints added to Endpoint Management if those endpoints also match the rule.
+JWT validation rules automatically apply to new endpoints added to Endpoint Management if those endpoints also match the rule's selector.
 :::
 
 ---
