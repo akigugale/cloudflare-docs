@@ -3,7 +3,7 @@ name: Cloudflare Wallets
 
 entry:
   title: Cloudflare Wallets
-  url: /cloudflare-wallets/
+  url: /wallets/
   group: Developer platform
   additional_groups: [AI]
   tags: [AI]
